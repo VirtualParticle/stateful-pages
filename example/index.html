@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stateful Pages</title>
+</head>
+<body>
+
+<stateful id="root">
+
+    <button id="button">Click me!</button>
+    Presses: <value name="presses"></value>
+
+    <p>Condition: <value name="condition"></value></p>
+
+    <if condition="condition">
+        <then>then</then>
+        <elif condition="secondCondition">elif</elif>
+        <else>else</else>
+    </if>
+
+</stateful>
+
+<script src="../lib/esm/index.js"></script>
+<script>
+
+    const stateful = document.getElementById("root");
+    const setState = stateful.setState;
+    const state = stateful.state;
+
+    setState({
+        presses: 0
+    });
+
+    document.getElementById("button").onclick = () => {
+        setState({
+            presses: state.presses + 1
+        });
+    }
+
+</script>
+</body>
+</html>
