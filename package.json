@@ -1,0 +1,33 @@
+{
+  "name": "stateful-pages",
+  "version": "0.1.0",
+  "author": {
+    "email": "markvadeika@gmail.com",
+    "name": "Mark Vadeika"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VirtualParticle/stateful-pages.git"
+  },
+  "homepage": "https://github.com/VirtualParticle/stateful-pages",
+  "description": "Lightweight state manager",
+  "keywords": [
+    "state"
+  ],
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
+  "license": "MIT",
+  "files": [
+    "./lib"
+  ],
+  "scripts": {
+    "build": "yarn build:esm && yarn build:cjs",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir lib/cjs",
+    "dev": "tsc-watch"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  }
+}
