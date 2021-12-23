@@ -28,6 +28,14 @@ interface ElseTag extends HTMLElement {
 
 }
 
+interface WhenTag extends HTMLElement {
+
+}
+
+interface CaseTag extends HTMLElement {
+
+}
+
 (() => {
 
     const escapeHtml = (unsafe: string) => {
@@ -99,6 +107,45 @@ interface ElseTag extends HTMLElement {
                 }
 
                 elseTags.forEach(thenTag => thenTag.style.display = "inline");
+
+            });
+
+            const whenTags = Array.from(stateful.getElementsByTagName("when")) as WhenTag[];
+            whenTags.forEach(whenTag => {
+
+                const value = state[whenTag.getAttribute("value") as string];
+                const cases = Array.from(whenTag.getElementsByTagName("case")) as CaseTag[];
+
+                let found = false;
+                for (const caseTag of cases) {
+
+                    const caseValueName = caseTag.getAttribute("value");
+                    if (!caseValueName) {
+                        caseTag.style.display = "none";
+                        continue;
+                    }
+
+                    let caseValue: string | number = caseValueName.substring(1);
+                    if (caseValueName.startsWith("!")) { // literal value
+                        if (!isNaN(+caseValue)) {
+                            caseValue = +caseValue;
+                        }
+                    } else {
+                        caseValue = state[caseValueName];
+                    }
+
+                    if (!found && typeof value !== "undefined" && caseValue === value) {
+                        caseTag.style.display = "inline";
+                        found = true;
+                    } else {
+                        caseTag.style.display = "none";
+                    }
+
+                }
+
+                (Array.from(whenTag.getElementsByTagName("else")) as ElseTag[]).forEach(elseTag => {
+                    elseTag.style.display = found ? "none" : "inline";
+                });
 
             });
 

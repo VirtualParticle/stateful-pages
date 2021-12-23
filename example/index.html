@@ -19,6 +19,35 @@
         <else>else</else>
     </if>
 
+    <br/>
+    <br/>
+
+    <label for="when-select">When Value:</label>
+    <select id="when-select">
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+    </select>
+
+    <when value="presses">
+        <case value="!0">
+            <p>Zero</p>
+        </case>
+        <case>
+            <p>Won't show up</p>
+        </case>
+        <case value="!2">
+            <p>Two</p>
+        </case>
+        <case value="!3">
+            <p>Three</p>
+        </case>
+        <else>
+            <p>Other</p>
+        </else>
+    </when>
+
 </stateful>
 
 <script src="../lib/esm/index.js"></script>
@@ -29,12 +58,20 @@
     const state = stateful.state;
 
     setState({
-        presses: 0
+        presses: 0,
+        condition: true,
+        whenValue: 0,
     });
 
     document.getElementById("button").onclick = () => {
         setState({
             presses: state.presses + 1
+        });
+    }
+
+    document.getElementById("when-select").onchange = e => {
+        setState({
+            whenValue: e.target.value,
         });
     }
 
