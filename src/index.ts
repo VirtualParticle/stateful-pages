@@ -127,7 +127,7 @@ interface CaseTag extends HTMLElement {
 
                     let caseValue: string | number = caseValueName.substring(1);
                     if (caseValueName.startsWith("!")) { // literal value
-                        if (!isNaN(+caseValue)) {
+                        if (!isNaN(+caseValue) && typeof value === "number") {
                             caseValue = +caseValue;
                         }
                     } else {
