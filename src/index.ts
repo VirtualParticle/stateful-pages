@@ -88,7 +88,7 @@ interface CaseTag extends HTMLElement {
                 const elseTags = Array.from(ifTag.getElementsByTagName("else")) as ElseTag[];
 
                 if (condition) {
-                    thenTags.forEach(tag => tag.style.display = "inline");
+                    thenTags.forEach(tag => tag.style.display = "contents");
                     elifTags.forEach(tag => tag.style.display = "none");
                     elseTags.forEach(tag => tag.style.display = "none");
                     return;
@@ -101,12 +101,12 @@ interface CaseTag extends HTMLElement {
                 for (const elifTag of elifTags) {
                     const condition = !!state[elifTag.getAttribute("condition") as string];
                     if (condition) {
-                        elifTag.style.display = "inline";
+                        elifTag.style.display = "contents";
                         return;
                     }
                 }
 
-                elseTags.forEach(thenTag => thenTag.style.display = "inline");
+                elseTags.forEach(thenTag => thenTag.style.display = "contents");
 
             });
 
@@ -135,7 +135,7 @@ interface CaseTag extends HTMLElement {
                     }
 
                     if (!found && typeof value !== "undefined" && caseValue === value) {
-                        caseTag.style.display = "inline";
+                        caseTag.style.display = "contents";
                         found = true;
                     } else {
                         caseTag.style.display = "none";
@@ -144,7 +144,7 @@ interface CaseTag extends HTMLElement {
                 }
 
                 (Array.from(whenTag.getElementsByTagName("else")) as ElseTag[]).forEach(elseTag => {
-                    elseTag.style.display = found ? "none" : "inline";
+                    elseTag.style.display = found ? "none" : "contents";
                 });
 
             });
