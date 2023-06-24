@@ -10,7 +10,6 @@ Put the Stateful Pages script tag at the bottom of the `body`, but before your J
 
 ```html
 <html lang="en">
-
 <body>
 
 <!-- Body -->
@@ -18,7 +17,6 @@ Put the Stateful Pages script tag at the bottom of the `body`, but before your J
 <script src="path/to/stateful/pages"></script>
 <script src="path/to/your/code"></script>
 </body>
-
 </html>
 ```
 
@@ -156,7 +154,6 @@ languages.
 
 ```html
 <stateful id="stateful-root">
-    
     <label for="when-select">When Value:</label>
     <select id="when-select">
         <option>0</option>
@@ -183,7 +180,6 @@ languages.
             <p>Other</p>
         </else>
     </when>
-    
 </stateful>
 
 <script>
@@ -199,7 +195,6 @@ languages.
             whenValue: e.target.value,
         });
     }
-    
 </script>
 ```
 
